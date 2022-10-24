@@ -64,8 +64,8 @@ Running under: Windows 10 x64 (build 19044)
 Matrix products: default
 
 locale:
-[1] LC_COLLATE=English_United States.1252  LC_CTYPE=English_United States.1252  LC_MONETARY=English_United States.1252
-[4] LC_NUMERIC=C  LC_TIME=English_United States.1252  
+[1] LC_COLLATE=English_United States.1252  LC_CTYPE=English_United States.1252  
+[3] LC_MONETARY=English_United States.1252 LC_NUMERIC=C  LC_TIME=English_United States.1252  
 
 attached base packages:
 [1] grid  stats  graphics  grDevices utils  datasets  methods  base  
