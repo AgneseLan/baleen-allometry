@@ -17,7 +17,6 @@ To cite this repo:
 ## Data :floppy_disk: 
 
 The data are provided in the Data folder. Mesh files (PLY) needed to test postioning when importing landmarks are available at Phenome10k (https://www.phenome10k.org/). 
-Zipped data need to be extracted before use.
 
 - __Landmark data__: *pts folder* <br />
 Text files with landmark coordinates for each specimen in PTS format. 
