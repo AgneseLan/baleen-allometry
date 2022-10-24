@@ -1,0 +1,31 @@
+#NEXUS
+
+
+BEGIN TAXA;
+	TITLE Taxa;
+	DIMENSIONS NTAX=9;
+	TAXLABELS
+		Balaena BalaenopteraL Caperea Eschrichtius Kogia Lagenorhynchus Megaptera BalaenopteraS Phocoena 
+	;
+END;
+
+
+BEGIN TREES;
+	Title 'Trees from "tree cetacea.tre"';
+	ID 017cfa6af7aa5;
+	LINK Taxa = Taxa;
+	TRANSLATE
+[0] 		1 Balaena,
+[1] 		2 BalaenopteraL,
+[2] 		3 Caperea,
+[3] 		4 Eschrichtius,
+[4] 		5 Kogia,
+[5] 		6 Lagenorhynchus,
+[6] 		7 Megaptera,
+[7] 		8 BalaenopteraS,
+[8] 		9 Phocoena;
+	TREE 'branch lenghts tree++' = ((1:25.7,(3:22.1,(8:15.7,(4:14.4,(2:13.7,7:13.7):0.7):1.3):6.4):3.6):11.0,(5:34.099999999999994,(9:19.8,6:19.799999999999997):14.3):2.6):16.0;
+END;
+
+
+
