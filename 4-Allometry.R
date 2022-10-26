@@ -341,6 +341,27 @@ clear3d()
 
 ###Regression PC1 and PC2 ----
 #Calculate regression for each component taking family into account
+reg_PC1res_genus <- lm(Comp1 ~ genus, data = pcscores_res)
+reg_PC2res_genus <- lm(Comp2 ~ genus, data = pcscores_res)
+
+#View results and p-value
+summary(reg_PC1res_genus)
+summary(reg_PC2res_genus)
+anova(reg_PC1res_genus)
+anova(reg_PC2res_genus)
+
+#Save results of significant regression to file
+sink("Output/PC1-2res_genus_lm.txt")
+print("PC1")
+summary(reg_PC1res_genus)
+anova(reg_PC1res_genus)
+print("PC2")
+summary(reg_PC2res_genus)
+anova(reg_PC2res_genus)
+sink() 
+
+
+#Calculate regression for each component taking family into account
 reg_PC1res_family <- lm(Comp1 ~ family, data = pcscores_res)
 reg_PC2res_family <- lm(Comp2 ~ family, data = pcscores_res)
 
@@ -420,6 +441,66 @@ summary(reg_PC2res_feeding)
 anova(reg_PC2res_feeding)
 sink() 
 
+#Calculate regression for each component taking feeding mode into account - Mysticeti only
+reg_PC1res_feeding_myst <- lm(Comp1[rows_mysticeti] ~ feeding[rows_mysticeti], data = pcscores_res)
+reg_PC2res_feeding_myst <- lm(Comp2[rows_mysticeti] ~ feeding[rows_mysticeti], data = pcscores_res)
+
+#View results and p-value
+summary(reg_PC1res_feeding_myst)
+summary(reg_PC2res_feeding_myst)
+anova(reg_PC1res_feeding_myst)
+anova(reg_PC2res_feeding_myst)
+
+#Save results of significant regression to file
+sink("Output/PC1-2res_feeding_myst_lm.txt")
+print("PC1")
+summary(reg_PC1res_feeding_myst)
+anova(reg_PC1res_feeding_myst)
+print("PC2")
+summary(reg_PC2res_feeding_myst)
+anova(reg_PC2res_feeding_myst)
+sink() 
+
+#Calculate regression for each component taking family into account - Mysticeti only
+reg_PC1res_family_myst <- lm(Comp1[rows_mysticeti] ~ family[rows_mysticeti], data = pcscores_res)
+reg_PC2res_family_myst <- lm(Comp2[rows_mysticeti] ~ family[rows_mysticeti], data = pcscores_res)
+
+#View results and p-value
+summary(reg_PC1res_family_myst)
+summary(reg_PC2res_family_myst)
+anova(reg_PC1res_family_myst)
+anova(reg_PC2res_family_myst)
+
+#Save results of significant regression to file
+sink("Output/PC1-2res_family_myst_lm.txt")
+print("PC1")
+summary(reg_PC1res_family_myst)
+anova(reg_PC1res_family_myst)
+print("PC2")
+summary(reg_PC2res_family_myst)
+anova(reg_PC2res_family_myst)
+sink() 
+
+#Calculate regression for each component taking genus into account - Mysticeti only
+reg_PC1res_genus_myst <- lm(Comp1[rows_mysticeti] ~ genus[rows_mysticeti], data = pcscores_res)
+reg_PC2res_genus_myst <- lm(Comp2[rows_mysticeti] ~ genus[rows_mysticeti], data = pcscores_res)
+
+#View results and p-value
+summary(reg_PC1res_genus_myst)
+summary(reg_PC2res_genus_myst)
+anova(reg_PC1res_genus_myst)
+anova(reg_PC2res_genus_myst)
+
+#Save results of significant regression to file
+sink("Output/PC1-2res_genus_myst_lm.txt")
+print("PC1")
+summary(reg_PC1res_genus_myst)
+anova(reg_PC1res_genus_myst)
+print("PC2")
+summary(reg_PC2res_genus_myst)
+anova(reg_PC2res_genus_myst)
+sink() 
+
 #Calculate regression for each component taking feeding mode and categories into account
 reg_PC1res_feeding_cat <- lm(Comp1 ~ feeding * category, data = pcscores_res)
 reg_PC2res_feeding_cat <- lm(Comp2 ~ feeding * category, data = pcscores_res)
@@ -441,18 +522,27 @@ anova(reg_PC2res_feeding_cat)
 sink() 
 
 #Save results of res regressions to 1 file
+#Save results of res regressions to 1 file
 sink("Output/PC1-2_res_lm.txt")
 print("PC1")
 anova(reg_PC1res_family)
+anova(reg_PC1res_genus)
 anova(reg_PC1res_category)
 anova(reg_PC1res_group)
+anova(reg_PC1res_genus_myst)
+anova(reg_PC1res_family_myst)
 anova(reg_PC1res_feeding)
+anova(reg_PC1res_feeding_myst)
 anova(reg_PC1res_feeding_cat)
 print("PC2")
 anova(reg_PC2res_family)
+anova(reg_PC2res_genus)
 anova(reg_PC2res_category)
 anova(reg_PC2res_group)
+anova(reg_PC2res_genus_myst)
+anova(reg_PC2res_family_myst)
 anova(reg_PC2res_feeding)
+anova(reg_PC2res_feeding_myst)
 anova(reg_PC2res_feeding_cat)
 sink()
 
