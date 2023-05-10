@@ -157,24 +157,28 @@ PC2max_res <- PCA_residuals[["shapes"]][["shapes.comp2"]][["max"]]
 PC1min_res_points <- spheres3d(PC1min_res, radius=.001, color = col_modules)
 
 rgl.snapshot(filename = "Output/PC1min_res.png") 
+rgl.snapshot(filename = "Output/PC1min_res1.png")
 clear3d()
 
 #PC1max colors
 PC1max_res_points <- spheres3d(PC1max_res, radius=.001, color = col_modules)
 
 rgl.snapshot(filename = "Output/PC1max_res.png") 
+rgl.snapshot(filename = "Output/PC1max_res1.png")
 clear3d()
 
 #PC2min colors
 PC2min_res_points <- spheres3d(PC2min_res, radius=.001, color = col_modules)
 
 rgl.snapshot(filename = "Output/PC2min_res.png") 
+rgl.snapshot(filename = "Output/PC2min_res1.png") 
 clear3d()
 
 #PC2max colors
 PC2max_res_points <- spheres3d(PC2max_res, radius=.001, color = col_modules)
 
 rgl.snapshot(filename = "Output/PC2max_res.png") 
+rgl.snapshot(filename = "Output/PC2max_res1.png") 
 clear3d()
 
 ##Make better PCA plot using ggplot
@@ -277,13 +281,14 @@ PCA_res_genus_ggplot1 <- ggplot(pcscores_res, aes(x = Comp1, y = Comp2))+
 #Visualize plot and save as PDF using menu in bar on the right
 PCA_res_genus_ggplot1
 
+##PCA mysticeti only----
 #Nice PCA plot with hulls around genera - myst only
 pcscores_res_myst <- pcscores_res %>% filter(group == "mysticeti")
 hulls_res_genus_myst <- hulls_res_genus %>% filter(group == "mysticeti")
 
 PCA_res_genus_myst_ggplot <- ggplot(pcscores_res_myst, aes(x = Comp1, y = Comp2))+
   geom_polygon(data = hulls_res_genus_myst, aes(x = x, y = y, group = genus, colour = genus, linetype = family), inherit.aes = F,
-               size = 1, alpha = 0.005, show.legend = FALSE)+ #colored hulls with transparency
+               linewidth = 1, alpha = 0.005, show.legend = FALSE)+ #colored hulls with transparency
   geom_point(size = 4, aes(shape = category, alpha = category, colour = genus, fill = genus))+
   scale_colour_manual(name = "Genus", labels = levels(as.factor(pcscores_res_myst$genus)), 
                       values = mypalette_taxa[-c(6,7,9)], aesthetics = c("colour","fill"),
@@ -330,12 +335,14 @@ preds_res <- shape.predictor(gdf_res$coords[,,rows_mysticeti], x= PC_myst_res, I
 PC1_PC2max_myst_res_points <- spheres3d(preds_res$predPC1_PC2max, radius=.0004, color = col_modules)
 
 rgl.snapshot(filename = "Output/PC1_PC2max_myst_res.png") 
+rgl.snapshot(filename = "Output/PC1_PC2max_myst_res1.png") 
 clear3d()
 
 #PC1_PC2min colors
 PC1_PC2min_myst_res_points <- spheres3d(preds_res$predPC1_PC2min, radius=.003, color = col_modules)
 
 rgl.snapshot(filename = "Output/PC1_PC2min_myst_res.png") 
+rgl.snapshot(filename = "Output/PC1_PC2min_myst_res1.png") 
 clear3d()
 
 

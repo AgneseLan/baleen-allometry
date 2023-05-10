@@ -184,7 +184,7 @@ image(1:20, 1, as.matrix(1:20), col = mypalette_blue, xlab = "Blue",
       ylab = "", yaxt = "n")
 
 #Palette for 27 genera - based on genus2, different shades for myst and odont
-mypalette_myst <- colorRampPalette(c(mypalette_huepurple[3:6], mypalette_huepurple[8]))
+mypalette_myst <- colorRampPalette(c(mypalette_huepurple[3],mypalette_huepurple[5:6], mypalette_huepurple[9]))
 mypalette_myst(6)
 plot(rep(1,6),col=mypalette_myst(6),pch=19,cex=3)
 mypalette_myst2 <- mypalette_myst(6)
@@ -219,6 +219,12 @@ plot(rep(1,6),col=mypalette_families ,pch=19,cex=3, main = "Families colors", yl
 title(xlab = "1-Balaenidae 2-Balaenopteridae 3-Delphinidae 4-Neobalaenidae 
 5-Phocoenidae 6-Physeteroidea", cex.lab = 1.3, font.lab = 3, line = -3)
 text(x = seq_along(1:6), y = 1.05, labels = seq_along(1:6))
+
+#Palette for categories - early, late/new, immature, adult
+mypalette_category <- c(mypalette_blue[3,], mypalette_blue[7,], mypalette_blue[13,], mypalette_blue[18,])
+image(1:4, 1, as.matrix(1:4), col = mypalette_category, main = "Categories colors", 
+      xlab =  "1-early 2-late/new 3-immature 4-adult", cex.lab = 1.3, cex.main =2,
+      ylab = "", yaxt = "n")
 
 #Palette for categories - early, late/new, immature, adult
 mypalette_category <- c(mypalette_blue[3,], mypalette_blue[7,], mypalette_blue[13,], mypalette_blue[18,])
@@ -357,24 +363,28 @@ PC2max_all <- PCA_all[["shapes"]][["shapes.comp2"]][["max"]]
 PC1min_all_points <- spheres3d(PC1min_all, radius=.001, color = col_modules)
 
 rgl.snapshot(filename = "Output/PC1min_all.png") 
+rgl.snapshot(filename = "Output/PC1min_all1.png") 
 clear3d()
 
 #PC1max colors
 PC1max_all_points <- spheres3d(PC1max_all, radius=.001, color = col_modules)
 
 rgl.snapshot(filename = "Output/PC1max_all.png") 
+rgl.snapshot(filename = "Output/PC1max_all1.png") 
 clear3d()
 
 #PC2min colors
 PC2min_all_points <- spheres3d(PC2min_all, radius=.001, color = col_modules)
 
 rgl.snapshot(filename = "Output/PC2min_all.png") 
+rgl.snapshot(filename = "Output/PC2min_all1.png") 
 clear3d()
 
 #PC2max colors
 PC2max_all_points <- spheres3d(PC2max_all, radius=.001, color = col_modules)
 
 rgl.snapshot(filename = "Output/PC2max_all.png") 
+rgl.snapshot(filename = "Output/PC2max_all1.png") 
 clear3d()
 
 ##Make better PCA plot using ggplot
@@ -477,13 +487,14 @@ PCA_all_genus_ggplot1 <- ggplot(pcscores_all, aes(x = Comp1, y = Comp2))+
 #Visualize plot and save as PDF using menu in bar on the right
 PCA_all_genus_ggplot1
 
+##PCA mysticeti only----
 #Nice PCA plot with hulls around genera - myst only
 pcscores_all_myst <- pcscores_all %>% filter(group == "mysticeti")
 hulls_all_genus_myst <- hulls_all_genus %>% filter(group == "mysticeti")
 
 PCA_all_genus_myst_ggplot <- ggplot(pcscores_all_myst, aes(x = Comp1, y = Comp2))+
   geom_polygon(data = hulls_all_genus_myst, aes(x = x, y = y, group = genus, colour = genus, linetype = family), inherit.aes = F,
-               size = 1, alpha = 0.005, show.legend = FALSE)+ #colored hulls with transparency
+               linewidth = 1, alpha = 0.005, show.legend = FALSE)+ #colored hulls with transparency
   geom_point(size = 4, aes(shape = category, alpha = category, colour = genus, fill = genus))+
   scale_colour_manual(name = "Genus", labels = levels(as.factor(pcscores_all_myst$genus)), 
                       values = mypalette_taxa[-c(6,7,9)], aesthetics = c("colour","fill"),

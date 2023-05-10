@@ -169,13 +169,20 @@ image(1:20,1, as.matrix(1:20), col = mypalette_greys, xlab="Greys (sequential)",
       ylab = "", yaxt = "n")
 mypalette_greys2 <- mypalette_greys[c(4:20)]
 
+mypalette_browns <- as.matrix(ggthemes_data[["tableau"]][["color-palettes"]][["ordered-sequential"]][["Brown"]][["value"]])
+image(1:20,1, as.matrix(1:20), col = mypalette_browns, xlab="Browns (sequential)",
+      ylab = "", yaxt = "n")
+mypalette_browns2 <- mypalette_browns[c(15:20)]
+
 #Palette for nodes_all
-mypalette_nodes_all <- colorRampPalette(rev(mypalette_greys2[c(TRUE, FALSE)]))
+mypalette_nodes_all <- colorRampPalette(c(rev(mypalette_greys2[c(TRUE, FALSE)]),rev(mypalette_browns2)))
 mypalette_nodes_all(length(nodes_all))
 plot(rep(1,length(nodes_all)),col=mypalette_nodes_all(length(nodes_all)),pch=19,cex=3)
 mypalette_nodes_all1 <- mypalette_nodes_all(length(nodes_all))
+#reorder colors to make consecutive nodes easier to tell apart
+mypalette_nodes_all2 <- c("#59504E", "#A63D32","#BD6036", "#A9A09D", "#736967", "#8D8481",  "#B34D34", "#C5BDB9")
 
-mypalette_taxa_nodes_all <- c(mypalette_taxa, mypalette_nodes_all1)
+mypalette_taxa_nodes_all <- c(mypalette_taxa, mypalette_nodes_all2)
 plot(rep(1,length(mypalette_taxa_nodes_all)),col=mypalette_taxa_nodes_all ,pch=19,cex=3, 
      main = "Taxa and nodes colors", ylab = "", xlab = "" ,cex.main = 1.5)
 title(xlab = "1-Balaena 2-Balaenoptera_l 3-Balaenoptera_s 4-Caperea 5-Eschrichtius 
@@ -451,7 +458,7 @@ allometry_anc_all_groups_ggplot  <- ggplot(allometry_anc_all, aes(x = logCS, y =
   geom_point(size = 0, colour = "white")+
   #line on plot
   geom_abline(data = allometry_anc_all_coeffs_groups, 
-              aes(intercept = Intercept, slope = Slope,  colour = genus, alpha = group, linetype = group), size  = 1.2)+
+              aes(intercept = Intercept, slope = Slope,  colour = group, alpha = group, linetype = group), size  = 1.2)+
   #points after, so they are on top
   scale_color_manual(values = c(mypalette_taxa_nodes_all[10], mypalette_groups))+ 
   scale_alpha_manual(values = c(1, 0.5, 0.5))+
@@ -502,7 +509,7 @@ allometry_anc_all_odont_myst_ggplot  <- ggplot(allometry_anc_all, aes(x = logCS,
   #points after, so they are on top
   scale_color_manual(name = "Nodes", 
                      values = c(mypalette_taxa_nodes_all[c(10,6,7, 1,9)]))+ 
-  scale_alpha_manual(values = c(1, 0.5, 0.5))+
+  scale_alpha_manual(values = c(1, 1, 1))+
   theme_classic(base_size = 12)+
   scale_linetype_manual(name = "Nodes", values = as.vector(allometry_anc_all_coeffs_odont_myst$line))+
   ylab("Regression Score")+
@@ -638,7 +645,7 @@ allometry_anc_all_myst_nodes_ggplot  <- ggplot(allometry_anc_all, aes(x = logCS,
   #points after, so they are on top
   scale_color_manual(name = "Nodes", 
                      values = c(mypalette_taxa_nodes_all[11:13], mypalette_taxa_nodes_all[c(1:5,8)]))+ 
-  scale_alpha_manual(values = c(1, 0.8))+
+  scale_alpha_manual(values = c(1, 1))+
   theme_classic(base_size = 12)+
   scale_linetype_manual(name = "Nodes", values = c(4, 3 ,2, 2, 1 ,1, 2, 1 ,1))+
   ylab("Regression Score")+

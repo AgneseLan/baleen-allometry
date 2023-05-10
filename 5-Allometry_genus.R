@@ -374,7 +374,7 @@ glimpse(allometry_genus_plot)
 allometry_genus_ggplot <- ggplot(allometry_genus_plot, aes(x = logCS, y = RegScores))+
   geom_point(size = 4, aes(fill = genus, colour = genus, shape = group), alpha = 0.5)+  
   geom_smooth(method = "lm", aes(x = logCS, y = RegScores, linetype = group, colour = genus), inherit.aes = F,        
-              size = 1, alpha = 0.4, se = F, show.legend = T)+      #put col and other graphics OUTSIDE of aes()!!!
+              linewidth = 1, alpha = 0.4, se = F, show.legend = T)+      #put col and other graphics OUTSIDE of aes()!!!
   #points after, so they are on top
   scale_colour_manual(name = "Genus", labels = levels(genera), 
                       values = mypalette_taxa, aesthetics = c("colour","fill"))+         
@@ -399,8 +399,8 @@ allometry_genus_plot_odontoceti <- allometry_genus_plot %>% filter(group == "odo
 #Plot allometry regression by genus mysticeti
 allometry_genus_ggplot_mysticeti <- ggplot(allometry_genus_plot_mysticeti, aes(x = logCS, y = RegScores))+
   geom_point(size = 3, aes(fill = genus, colour = genus, shape = family), alpha = 0.3)+  
-  geom_smooth(method = "lm", aes(x = logCS, y = RegScores, colour = genus), linetype = 1, inherit.aes = F,        
-              size = 0.8, alpha = 0.4, se = F, show.legend = F)+      #put col and other graphics OUTSIDE of aes()!!!
+  geom_smooth(method = "lm", aes(x = logCS, y = RegScores, linetype = family, colour = genus), inherit.aes = F,        
+              linewidth = 0.8, alpha = 0.4, se = F, show.legend = T)+      #put col and other graphics OUTSIDE of aes()!!!
   #points after, so they are on top
   scale_colour_manual(name = "Genus", labels = levels(as.factor(allometry_genus_plot_mysticeti$genus)), 
                       values = mypalette_taxa[-c(6,7,9)], aesthetics = c("colour","fill"),
@@ -408,12 +408,16 @@ allometry_genus_ggplot_mysticeti <- ggplot(allometry_genus_plot_mysticeti, aes(x
   scale_shape_manual(name = "Family", labels = levels(families)[c(1:2,4)],
                      values = shapes_fam[c(1:2,4)], 
                      guide = guide_legend(override.aes = list(size = 4)))+
+  scale_linetype_manual(name = "Family", labels = levels(families)[c(1:2,4)],
+                        values = c(2,1,4), 
+                        guide = guide_legend(override.aes = list(colour = "black", linewidth = 1)))+
   theme_classic(base_size = 12)+
   ylab("Regression Score - p = 0.001**")+
-  theme(legend.key = element_blank(), legend.background = element_blank(),
+  theme(legend.key = element_blank(), legend.background = element_blank(),legend.key.width = unit(2, "line"),
         legend.title = element_text(size = 11, face = "bold"), 
         legend.position = c(0.6,0.1),  legend.direction = "vertical", legend.box = "horizontal", 
-        legend.justification = c(0,0))
+        legend.justification = c(0,0))+
+  guides(colour = "none", fill = "none")
 allometry_genus_ggplot_mysticeti
 
 #Add phylopic
@@ -431,7 +435,7 @@ allometry_genus_ggplot_mysticeti
 allometry_genus_ggplot_odontoceti <- ggplot(allometry_genus_plot_odontoceti, aes(x = logCS, y = RegScores))+
   geom_point(size = 3, aes(fill = genus, colour = genus, shape = family), alpha = 0.8)+  
   geom_smooth(method = "lm", aes(x = logCS, y = RegScores, colour = genus), linetype = 2, inherit.aes = F,        
-              size = 0.8, alpha = 0.4, se = F, show.legend = F)+      #put col and other graphics OUTSIDE of aes()!!!
+              linewidth = 0.8, alpha = 0.4, se = F, show.legend = F)+      #put col and other graphics OUTSIDE of aes()!!!
   #points after, so they are on top
   scale_colour_manual(name = "Genus", labels = levels(as.factor(allometry_genus_plot_odontoceti$genus)), 
                       values = mypalette_taxa[c(6,7,9)], aesthetics = c("colour","fill"),

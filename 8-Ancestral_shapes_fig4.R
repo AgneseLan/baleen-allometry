@@ -151,38 +151,33 @@ anc_postnatal <- arrayspecs(PCA_postnatal_phylo[["ancestors"]], dim(gdf_mysticet
 #PLOT SHAPES PER NODE - prenatal and postnatal ----
 
 #Create simplified color palette for prenatal and postnatal shapes
-#Get first palette
-mypalette_blue_red <- brewer.pal(11,"RdBu")
-image(1:11, 1, as.matrix(1:11), col = mypalette_blue_red, xlab = "Blue Red",
-      ylab = "", yaxt = "n")
-
-#Color scale - simplified rostrum, braincase and nasals
+#Color scale - simplified rostrum, supraoccipital, interparietal, and nasals
 #Different colors for each stage
 col_prenatal <- c(LMmodules, curvemodules)
 
 col_prenatal <- as.factor(col_prenatal)
 
-levels(col_prenatal) <- c(mypalette_blue_red[10], mypalette_blue_red[10], mypalette_blue_red[10], #basioccipital
-                         mypalette_blue_red[10], mypalette_blue_red[10], #condyles
-                         mypalette_blue_red[10], #exoccipital
-                         mypalette_blue_red[10], mypalette_blue_red[10], mypalette_blue_red[10], #frontal, interparietal, jugal
-                         mypalette_blue_red[8], mypalette_blue_red[9],  mypalette_blue_red[9], #maxilla, nasals
-                         mypalette_blue_red[8], mypalette_blue_red[8], mypalette_blue_red[8], #palatines, premax
-                         mypalette_blue_red[10], mypalette_blue_red[10], mypalette_blue_red[8]) #squamosal, socc., vomer
+levels(col_prenatal) <- c("gray40", "gray40", "gray40", #basioccipital
+                          "gray40", "gray40", #condyles
+                          "gray40", #exoccipital
+                          "gray40",  "#A6CEE3", "gray40",  #frontal, interparietal, jugal
+                          "#FF7F00", "#33A02C",  "#33A02C", #maxilla, nasals
+                         "gray40", "gray40",  "#E31A1C", #palatines, premax
+                         "gray40", "#1F78B4","gray40") #squamosal, socc., vomer
+
 
 
 col_postnatal <- c(LMmodules, curvemodules)
 
 col_postnatal <- as.factor(col_postnatal)
 
-levels(col_postnatal) <- c(mypalette_blue_red[2], mypalette_blue_red[2], mypalette_blue_red[2], #basioccipital
-                          mypalette_blue_red[2], mypalette_blue_red[2], #condyles
-                          mypalette_blue_red[2], #exoccipital
-                          mypalette_blue_red[2], mypalette_blue_red[2], mypalette_blue_red[2], #frontal, interparietal, jugal
-                          mypalette_blue_red[4], mypalette_blue_red[3],  mypalette_blue_red[3], #maxilla, nasals
-                          mypalette_blue_red[4], mypalette_blue_red[4], mypalette_blue_red[4], #palatines, postmax
-                          mypalette_blue_red[2], mypalette_blue_red[2], mypalette_blue_red[4]) #squamosal, socc., vomer
-
+levels(col_postnatal) <- c("gray20", "gray20", "gray20", #basioccipital
+                          "gray20", "gray20", #condyles
+                          "gray20", #exoccipital
+                          "gray20",  "#A6CEE3", "gray20",  #frontal, interparietal, jugal
+                          "#FF7F00", "#33A02C",  "#33A02C", #maxilla, nasals
+                          "gray20", "gray20",  "#E31A1C", #palatines, premax
+                          "gray20", "#1F78B4","gray20") #squamosal, socc., vomer
 
 #Plot shapes using vector relative to mean shape prenatal or postnatal for modern taxa
 #Node numbers as tree
@@ -190,7 +185,8 @@ levels(col_postnatal) <- c(mypalette_blue_red[2], mypalette_blue_red[2], mypalet
 node7_prenatal <- c(plotRefToTarget(mshape(coords_prenatal),anc_prenatal[,,1],
                                   method="vector", radius=.00001, mag=1),
                     spheres3d(anc_prenatal[,,1], radius=.001, color = col_prenatal),
-                    spheres3d(mshape(coords_prenatal), radius=.0005, color = "gray50",  alpha = 0.8, fastTransparency = T))
+                    spheres3d(mshape(coords_prenatal), radius=.0008, color = "gray50",  
+                              alpha = 0.8, fastTransparency = T))
 
 rgl.snapshot(filename = "Output/node7_prenatal.png") 
 rgl.snapshot(filename = "Output/node7_prenatal1.png") 
@@ -199,7 +195,8 @@ clear3d()
 node7_postnatal <- c(plotRefToTarget(mshape(coords_postnatal),anc_postnatal[,,1],
                                     method="vector", radius=.00001, mag=1),
                     spheres3d(anc_postnatal[,,1], radius=.001, color = col_postnatal),
-                    spheres3d(mshape(coords_postnatal), radius=.0005, color = "gray50",  alpha = 0.8, fastTransparency = T))
+                    spheres3d(mshape(coords_postnatal), radius=.0005, color = "gray50", 
+                              alpha = 0.8, fastTransparency = T))
 
 rgl.snapshot(filename = "Output/node7_postnatal.png") 
 rgl.snapshot(filename = "Output/node7_postnatal1.png") 
