@@ -1,8 +1,8 @@
 # Testing heterochrony in baleen whales 🐳 🦐 🔬📈
 ### Connecting skull shape ontogeny and evolution of different feeding adaptations in Mysticeti using 3D geometric morphometrics 
 
-Authors: [Agnese Lanzetti](mailto:agnese.lanzetti@gmail.com?subject=[GitHub]%20Ontogeny%20Baleen%20Whales%20Paper%20Code), xxx,
-zzz, Anjali Goswami
+Authors: [Agnese Lanzetti](mailto:agnese.lanzetti@gmail.com?subject=[GitHub]%20Ontogeny%20Baleen%20Whales%20Paper%20Code), Roberto Portela Miguez,
+Vincent Fernandez, Anjali Goswami
 
 To cite the paper: 
 
