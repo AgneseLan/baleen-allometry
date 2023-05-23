@@ -11,7 +11,7 @@ Available at: https://github.com/AgneseLan/baleen-allometry
 If using any of this code or data please cite the paper above and this repo
 
 To cite this repo: 
-
+<a href="https://doi.org/10.5281/zenodo.7963462"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.7963462.svg" alt="DOI"></a>
 
 
 ## Data :floppy_disk: 
