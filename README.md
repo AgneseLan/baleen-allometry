@@ -4,13 +4,13 @@
 Authors: [Agnese Lanzetti](mailto:agnese.lanzetti@gmail.com?subject=[GitHub]%20Ontogeny%20Baleen%20Whales%20Paper%20Code), Roberto Portela Miguez,
 Vincent Fernandez, Anjali Goswami
 
-To cite the paper: 
+To cite the paper: Lanzetti, A., Portela-Miguez, R., Fernandez, V., Goswami, A. 2023. Testing heterochrony: Connecting skull shape ontogeny and evolution of feeding adaptations in baleen whales. *Evolution & Development*. https://doi.org/10.1111/ede.12447
 
 Available at: https://github.com/AgneseLan/baleen-allometry
 
 If using any of this code or data please cite the paper above and this repo
 
-To cite this repo:
+To cite this repo: 
 
 
 
